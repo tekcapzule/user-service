@@ -1,11 +1,11 @@
-package in.tekcapsule.capsule.application.mapper;
+package com.tekcapsule.userpreference.application.mapper;
 
 import in.devstream.core.domain.Command;
 import in.devstream.core.domain.ExecBy;
 import in.devstream.core.domain.Origin;
-import in.tekcapsule.capsule.application.function.input.CreateInput;
-import in.tekcapsule.capsule.application.function.input.DisableInput;
-import in.tekcapsule.capsule.application.function.input.UpdateInput;
+import com.tekcapsule.userpreference.application.function.input.CreateInput;
+import com.tekcapsule.userpreference.application.function.input.DisableInput;
+import com.tekcapsule.userpreference.application.function.input.UpdateInput;
 import in.devstream.mentor.domain.command.CreateCommand;
 import in.devstream.mentor.domain.command.DisableCommand;
 import in.devstream.mentor.domain.command.UpdateCommand;

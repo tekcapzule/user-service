@@ -1,4 +1,4 @@
-package in.tekcapsule.capsule.application;
+package com.tekcapsule.userpreference.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

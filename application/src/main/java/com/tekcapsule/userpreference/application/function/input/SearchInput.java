@@ -1,4 +1,4 @@
-package in.tekcapsule.capsule.application.function.input;
+package com.tekcapsule.userpreference.application.function.input;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

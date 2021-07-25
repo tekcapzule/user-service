@@ -1,6 +1,7 @@
-package in.tekcapsule.capsule.application.function;
+package com.tekcapsule.userpreference.application.function;
 
-import in.tekcapsule.capsule.application.function.input.SearchInput;
+import com.tekcapsule.userpreference.application.config.AppConstants;
+import com.tekcapsule.userpreference.application.function.input.SearchInput;
 import in.devstream.mentor.domain.query.SearchItem;
 import in.devstream.mentor.domain.query.SearchQuery;
 import in.devstream.mentor.domain.service.MentorService;
@@ -14,8 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-
-import static in.tekcapsule.capsule.application.config.AppConstants.HTTP_STATUS_CODE_HEADER;
 
 
 @Component
@@ -37,7 +36,7 @@ public class SearchFunction implements Function<Message<SearchInput>, Message<Li
 
         List<SearchItem> searchItems = mentorService.search(SearchQuery.builder().tenantId(searchInput.getTenantId()).build());
         Map<String, Object> responseHeader = new HashMap();
-        responseHeader.put(HTTP_STATUS_CODE_HEADER, HttpStatus.OK.value());
+        responseHeader.put(AppConstants.HTTP_STATUS_CODE_HEADER, HttpStatus.OK.value());
 
         return new GenericMessage(searchItems, responseHeader);
     }

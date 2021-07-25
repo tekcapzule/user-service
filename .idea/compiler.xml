@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="capsule-service" />
+        <module name="user-preference-service" />
+        <module name="user-preference-domain" />
         <module name="capsule-domain" />
       </profile>
     </annotationProcessing>
@@ -14,12 +16,16 @@
       <module name="capsule-application" target="1.5" />
       <module name="capsule-domain" target="1.8" />
       <module name="capsule-service" target="1.8" />
+      <module name="user-preference-domain" target="1.8" />
+      <module name="user-preference-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="capsule-domain" options="-parameters" />
       <module name="capsule-service" options="-parameters" />
+      <module name="user-preference-domain" options="-parameters" />
+      <module name="user-preference-service" options="-parameters" />
     </option>
   </component>
 </project>

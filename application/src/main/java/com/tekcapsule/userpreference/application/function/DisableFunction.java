@@ -1,12 +1,12 @@
-package in.tekcapsule.capsule.application.function;
+package com.tekcapsule.userpreference.application.function;
 
+import com.tekcapsule.userpreference.application.mapper.InputOutputMapper;
 import in.devstream.core.domain.Origin;
 import in.devstream.core.utils.HeaderUtil;
-import in.tekcapsule.capsule.application.function.input.DisableInput;
-import in.tekcapsule.capsule.application.mapper.InputOutputMapper;
+import com.tekcapsule.userpreference.application.function.input.DisableInput;
 import in.devstream.mentor.domain.command.DisableCommand;
 import in.devstream.mentor.domain.service.MentorService;
-import in.tekcapsule.capsule.application.config.AppConstants;
+import com.tekcapsule.userpreference.application.config.AppConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.Message;

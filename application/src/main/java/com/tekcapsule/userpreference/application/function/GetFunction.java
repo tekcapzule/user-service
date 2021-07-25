@@ -1,9 +1,9 @@
-package in.tekcapsule.capsule.application.function;
+package com.tekcapsule.userpreference.application.function;
 
-import in.tekcapsule.capsule.application.function.input.GetInput;
+import com.tekcapsule.userpreference.application.config.AppConstants;
+import com.tekcapsule.userpreference.application.function.input.GetInput;
 import in.devstream.mentor.domain.model.Mentor;
 import in.devstream.mentor.domain.service.MentorService;
-import in.tekcapsule.capsule.application.config.AppConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.Message;

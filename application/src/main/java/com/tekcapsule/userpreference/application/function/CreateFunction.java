@@ -1,9 +1,10 @@
-package in.tekcapsule.capsule.application.function;
+package com.tekcapsule.userpreference.application.function;
 
+import com.tekcapsule.userpreference.application.config.AppConstants;
+import com.tekcapsule.userpreference.application.mapper.InputOutputMapper;
 import in.devstream.core.domain.Origin;
 import in.devstream.core.utils.HeaderUtil;
-import in.tekcapsule.capsule.application.function.input.CreateInput;
-import in.tekcapsule.capsule.application.mapper.InputOutputMapper;
+import com.tekcapsule.userpreference.application.function.input.CreateInput;
 import in.devstream.mentor.domain.command.CreateCommand;
 import in.devstream.mentor.domain.model.Mentor;
 import in.devstream.mentor.domain.service.MentorService;
@@ -16,8 +17,6 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
-import static in.tekcapsule.capsule.application.config.AppConstants.HTTP_STATUS_CODE_HEADER;
 
 @Component
 @Slf4j
@@ -42,7 +41,7 @@ public class CreateFunction implements Function<Message<CreateInput>, Message<Me
         CreateCommand createCommand = InputOutputMapper.buildCreateCommandFromCreateInput.apply(createInput, origin);
         Mentor mentor = mentorService.create(createCommand);
         Map<String, Object> responseHeader = new HashMap();
-        responseHeader.put(HTTP_STATUS_CODE_HEADER, HttpStatus.OK.value());
+        responseHeader.put(AppConstants.HTTP_STATUS_CODE_HEADER, HttpStatus.OK.value());
 
         return new GenericMessage(mentor, responseHeader);
     }

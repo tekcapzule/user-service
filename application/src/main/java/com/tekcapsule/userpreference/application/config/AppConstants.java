@@ -1,4 +1,4 @@
-package in.tekcapsule.capsule.application.config;
+package com.tekcapsule.userpreference.application.config;
 
 public final class AppConstants {
 
