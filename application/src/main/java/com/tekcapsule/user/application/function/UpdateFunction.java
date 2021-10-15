@@ -1,13 +1,13 @@
 package com.tekcapsule.user.application.function;
 
+import com.tekcapsule.core.domain.Origin;
+import com.tekcapsule.core.utils.HeaderUtil;
 import com.tekcapsule.user.application.function.input.UpdateInput;
 import com.tekcapsule.user.application.config.AppConstants;
 import com.tekcapsule.user.application.mapper.InputOutputMapper;
-import in.devstream.core.domain.Origin;
-import in.devstream.core.utils.HeaderUtil;
-import in.devstream.mentor.domain.command.UpdateCommand;
-import in.devstream.mentor.domain.model.Mentor;
-import in.devstream.mentor.domain.service.MentorService;
+import com.tekcapsule.user.domain.command.UpdateCommand;
+import com.tekcapsule.user.domain.model.User;
+import com.tekcapsule.user.domain.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.Message;
@@ -20,29 +20,29 @@ import java.util.function.Function;
 
 @Component
 @Slf4j
-public class UpdateFunction implements Function<Message<UpdateInput>, Message<Mentor>> {
+public class UpdateFunction implements Function<Message<UpdateInput>, Message<User>> {
 
-    private final MentorService mentorService;
+    private final UserService userService;
 
-    public UpdateFunction(final MentorService mentorService) {
-        this.mentorService = mentorService;
+    public UpdateFunction(final UserService userService) {
+        this.userService = userService;
     }
 
 
     @Override
-    public Message<Mentor> apply(Message<UpdateInput> updateInputMessage) {
+    public Message<User> apply(Message<UpdateInput> updateInputMessage) {
         UpdateInput updateInput = updateInputMessage.getPayload();
 
-        log.info(String.format("Entering update mentor Function - Tenant Id:{0}, User Id:{1}", updateInput.getTenantId(), updateInput.getUserId()));
+        log.info(String.format("Entering update user Function - User Id:{1}",  updateInput.getUserId()));
 
         Origin origin = HeaderUtil.buildOriginFromHeaders(updateInputMessage.getHeaders());
 
         UpdateCommand updateCommand = InputOutputMapper.buildUpdateCommandFromUpdateInput.apply(updateInput, origin);
-        Mentor mentor = mentorService.update(updateCommand);
+        User user = userService.update(updateCommand);
         Map<String, Object> responseHeader = new HashMap();
         responseHeader.put(AppConstants.HTTP_STATUS_CODE_HEADER, HttpStatus.OK.value());
 
-        return new GenericMessage(mentor, responseHeader);
+        return new GenericMessage(user, responseHeader);
 
     }
 }

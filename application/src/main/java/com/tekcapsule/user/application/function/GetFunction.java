@@ -2,8 +2,8 @@ package com.tekcapsule.user.application.function;
 
 import com.tekcapsule.user.application.function.input.GetInput;
 import com.tekcapsule.user.application.config.AppConstants;
-import in.devstream.mentor.domain.model.Mentor;
-import in.devstream.mentor.domain.service.MentorService;
+import com.tekcapsule.user.domain.model.User;
+import com.tekcapsule.user.domain.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.Message;
@@ -16,29 +16,29 @@ import java.util.function.Function;
 
 @Component
 @Slf4j
-public class GetFunction implements Function<Message<GetInput>, Message<Mentor>> {
+public class GetFunction implements Function<Message<GetInput>, Message<User>> {
 
-    private final MentorService mentorService;
+    private final UserService userService;
 
-    public GetFunction(final MentorService mentorService) {
-        this.mentorService = mentorService;
+    public GetFunction(final UserService userService) {
+        this.userService = userService;
     }
 
 
     @Override
-    public Message<Mentor> apply(Message<GetInput> getInputMessage) {
+    public Message<User> apply(Message<GetInput> getInputMessage) {
         GetInput getInput = getInputMessage.getPayload();
 
-        log.info(String.format("Entering get mentor Function - Tenant Id:{0}, User Id:{1}", getInput.getTenantId(), getInput.getUserId()));
+        log.info(String.format("Entering get user Function -  User Id:{1}", getInput.getUserId()));
 
-        Mentor mentor = mentorService.get(getInput.getTenantId(), getInput.getUserId());
+        User user = userService.get(getInput.getUserId(), getInput.getUserId());
         Map<String, Object> responseHeader = new HashMap();
-        if (mentor == null) {
+        if (user == null) {
             responseHeader.put(AppConstants.HTTP_STATUS_CODE_HEADER, HttpStatus.NOT_FOUND.value());
-            mentor = Mentor.builder().build();
+            user = User.builder().build();
         } else {
             responseHeader.put(AppConstants.HTTP_STATUS_CODE_HEADER, HttpStatus.OK.value());
         }
-        return new GenericMessage(mentor, responseHeader);
+        return new GenericMessage(user, responseHeader);
     }
 }

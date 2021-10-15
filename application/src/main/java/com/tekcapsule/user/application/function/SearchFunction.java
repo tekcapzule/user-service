@@ -2,9 +2,9 @@ package com.tekcapsule.user.application.function;
 
 import com.tekcapsule.user.application.function.input.SearchInput;
 import com.tekcapsule.user.application.config.AppConstants;
-import in.devstream.mentor.domain.query.SearchItem;
-import in.devstream.mentor.domain.query.SearchQuery;
-import in.devstream.mentor.domain.service.MentorService;
+import com.tekcapsule.user.domain.query.SearchItem;
+import com.tekcapsule.user.domain.query.SearchQuery;
+import com.tekcapsule.user.domain.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.Message;
@@ -21,10 +21,10 @@ import java.util.function.Function;
 @Slf4j
 public class SearchFunction implements Function<Message<SearchInput>, Message<List<SearchItem>>> {
 
-    private final MentorService mentorService;
+    private final UserService userService;
 
-    public SearchFunction(final MentorService mentorService) {
-        this.mentorService = mentorService;
+    public SearchFunction(final UserService userService) {
+        this.userService = userService;
     }
 
 
@@ -32,9 +32,9 @@ public class SearchFunction implements Function<Message<SearchInput>, Message<Li
     public Message<List<SearchItem>> apply(Message<SearchInput> searchInputMessage) {
         SearchInput searchInput = searchInputMessage.getPayload();
 
-        log.info(String.format("Entering search mentor Function - Tenant Id:{0}", searchInput.getTenantId()));
+        log.info(String.format("Entering search user Function"));
 
-        List<SearchItem> searchItems = mentorService.search(SearchQuery.builder().tenantId(searchInput.getTenantId()).build());
+        List<SearchItem> searchItems = userService.search(SearchQuery.builder().tenantId("").build());
         Map<String, Object> responseHeader = new HashMap();
         responseHeader.put(AppConstants.HTTP_STATUS_CODE_HEADER, HttpStatus.OK.value());
 

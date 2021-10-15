@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 public class SearchInput {
-    private String tenantId;
 }

@@ -1,14 +1,14 @@
 package com.tekcapsule.user.application.mapper;
 
+import com.tekcapsule.core.domain.Command;
+import com.tekcapsule.core.domain.ExecBy;
+import com.tekcapsule.core.domain.Origin;
 import com.tekcapsule.user.application.function.input.CreateInput;
 import com.tekcapsule.user.application.function.input.DisableInput;
 import com.tekcapsule.user.application.function.input.UpdateInput;
-import in.devstream.core.domain.Command;
-import in.devstream.core.domain.ExecBy;
-import in.devstream.core.domain.Origin;
-import in.devstream.mentor.domain.command.CreateCommand;
-import in.devstream.mentor.domain.command.DisableCommand;
-import in.devstream.mentor.domain.command.UpdateCommand;
+import com.tekcapsule.user.domain.command.CreateCommand;
+import com.tekcapsule.user.domain.command.DisableCommand;
+import com.tekcapsule.user.domain.command.UpdateCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 

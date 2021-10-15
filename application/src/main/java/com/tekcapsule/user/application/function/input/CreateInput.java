@@ -10,18 +10,10 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 public class CreateInput {
-    private String tenantId;
-    private Name name;
-    private Gender gender;
-    private String headLine;
-    private Contact contact;
-    private String photoUrl;
-    private DateOfBirth dateOfBirth;
-    private List<String> tags;
-    List<ProfessionalExperience> professionalExperiences;
-    List<EducationalQualification> educationalQualifications;
-    List<Award> awards;
-    List<Certification> certifications;
-    List<Publication> publications;
-    private Social social;
+    private String userId;
+    private String firstName;
+    private String lastName;
+    private List<String> SubscribedTopics;
+    private String emailId;
+    private String contactNumber;
 }
