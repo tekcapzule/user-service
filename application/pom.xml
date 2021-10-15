@@ -62,7 +62,7 @@
         </dependency>
         <dependency>
             <groupId>com.tekcapsule</groupId>
-            <artifactId>user-preference-domain</artifactId>
+            <artifactId>user-domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

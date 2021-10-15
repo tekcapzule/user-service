@@ -31,7 +31,7 @@ public class GetFunction implements Function<Message<GetInput>, Message<User>> {
 
         log.info(String.format("Entering get user Function -  User Id:{1}", getInput.getUserId()));
 
-        User user = userService.get(getInput.getUserId(), getInput.getUserId());
+        User user = userService.get(getInput.getUserId());
         Map<String, Object> responseHeader = new HashMap();
         if (user == null) {
             responseHeader.put(AppConstants.HTTP_STATUS_CODE_HEADER, HttpStatus.NOT_FOUND.value());
