@@ -16,6 +16,7 @@
       <module name="capsule-application" target="1.5" />
       <module name="capsule-domain" target="1.8" />
       <module name="capsule-service" target="1.8" />
+      <module name="user-preference-application" target="1.5" />
       <module name="user-preference-domain" target="1.8" />
       <module name="user-preference-service" target="1.8" />
     </bytecodeTargetLevel>

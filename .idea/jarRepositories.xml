@@ -3,8 +3,18 @@
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
       <option name="id" value="snapshots" />
+      <option name="name" value="tekcapsule-libs-snapshot" />
+      <option name="url" value="https://tekcapsulerepo.jfrog.io/artifactory/tekcapsule-libs-snapshot" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="snapshots" />
       <option name="name" value="maven-virtual-snapshot" />
       <option name="url" value="https://devstream1.jfrog.io/artifactory/maven-virtual-snapshot" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="tekcapsule-libs-release" />
+      <option name="url" value="https://tekcapsulerepo.jfrog.io/artifactory/tekcapsule-libs-release" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
