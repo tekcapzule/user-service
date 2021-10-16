@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(CreateCommand createCommand) {
 
-        log.info(String.format("Entering create user service - User:{0}", createCommand.getUserId()));
+        log.info(String.format("Entering create user service - User Id:{0}", createCommand.getUserId()));
 
         User user = User.builder()
                 .active(true)
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(String userId) {
 
-        log.info(String.format("Entering get user service - User Id:{10}", userId));
+        log.info(String.format("Entering get user service - User Id:{0}", userId));
 
         return userDynamoRepository.findBy( userId);
     }

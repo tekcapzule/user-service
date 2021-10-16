@@ -1,4 +1,4 @@
-service: capsule-service
+service: user-service
 package:
   version: 0.0.1-SNAPSHOT
   artifact: ./application/target/${self:service}-${self:package.version}-${self:provider}.jar
@@ -17,63 +17,51 @@ provider:
     APPLICATION_ENVIRONMENT: Dev
     CLOUD_REGION: US_East_2
 functions:
-  createMentor:
+  createUser:
     handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
     events:
       - http:
-          path: capsule/create
+          path: user/create
           method: post
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: createFunction
-  updateMentor:
+  updateUser:
     handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
     events:
       - http:
-          path: capsule/update
+          path: user/update
           method: post
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: updateFunction
-  disableMentor:
+  disableUser:
     handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
     events:
       - http:
-          path: capsule/disable
+          path: user/disable
           method: post
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: disableFunction
-  getMentor:
+  getUser:
     handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
     events:
       - http:
-          path: capsule/searchById
+          path: user/findById
           method: post
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: getFunction
-  searchMentor:
-    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
-    events:
-      - http:
-          path: capsule/search
-          method: post
-    environment:
-      SPRING_CLOUD_FUNCTION_DEFINITION: searchFunction
 
 resources:
   Resources:
     productsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: Capsule
+        TableName: User
         AttributeDefinitions:
-          - AttributeName: tenantId
-            AttributeType: S
           - AttributeName: userId
             AttributeType: S
         KeySchema:
-          - AttributeName: tenantId
-            KeyType: HASH
           - AttributeName: userId
-            KeyType: RANGE
+            KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1

@@ -33,7 +33,7 @@ public class UpdateFunction implements Function<Message<UpdateInput>, Message<Us
     public Message<User> apply(Message<UpdateInput> updateInputMessage) {
         UpdateInput updateInput = updateInputMessage.getPayload();
 
-        log.info(String.format("Entering update user Function - User Id:{1}",  updateInput.getUserId()));
+        log.info(String.format("Entering update user Function - User Id:{0}",  updateInput.getUserId()));
 
         Origin origin = HeaderUtil.buildOriginFromHeaders(updateInputMessage.getHeaders());
 

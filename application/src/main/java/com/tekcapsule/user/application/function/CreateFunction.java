@@ -34,7 +34,7 @@ public class CreateFunction implements Function<Message<CreateInput>, Message<Us
 
         CreateInput createInput = createInputMessage.getPayload();
 
-        log.info(String.format("Entering create user Function - Name:{1}", createInput.getEmailId()));
+        log.info(String.format("Entering create user Function - User Id:{0}", createInput.getEmailId()));
 
         Origin origin = HeaderUtil.buildOriginFromHeaders(createInputMessage.getHeaders());
 
