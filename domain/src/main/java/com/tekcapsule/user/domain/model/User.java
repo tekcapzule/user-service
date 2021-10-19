@@ -21,7 +21,6 @@ public class User extends BaseDomainEntity<String> implements AggregateRoot {
 
     @DynamoDBHashKey(attributeName="userId")
     private String userId;
-
     @DynamoDBAttribute(attributeName = "firstName")
     private String firstName;
     @DynamoDBAttribute(attributeName = "lastName")
