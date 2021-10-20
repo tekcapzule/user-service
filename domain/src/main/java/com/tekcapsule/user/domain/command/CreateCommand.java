@@ -15,6 +15,7 @@ public class CreateCommand extends Command {
     private String firstName;
     private String lastName;
     private List<String> SubscribedTopics;
+    private List<String> bookmarks;
     private String emailId;
     private String contactNumber;
 }

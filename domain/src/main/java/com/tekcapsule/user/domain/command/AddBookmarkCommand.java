@@ -5,17 +5,11 @@ import com.tekcapsule.core.domain.Command;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
-public class UpdateCommand extends Command {
+public class AddBookmarkCommand extends Command {
     private String userId;
-    private String firstName;
-    private String lastName;
-    private List<String> SubscribedTopics;
-    private List<String> bookmarks;
-    private String emailId;
-    private String contactNumber;
+    private String capsuleId;
 }

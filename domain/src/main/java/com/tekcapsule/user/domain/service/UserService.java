@@ -1,9 +1,7 @@
 package com.tekcapsule.user.domain.service;
 
-import com.tekcapsule.user.domain.command.CreateCommand;
-import com.tekcapsule.user.domain.command.DisableCommand;
+import com.tekcapsule.user.domain.command.*;
 import com.tekcapsule.user.domain.model.User;
-import com.tekcapsule.user.domain.command.UpdateCommand;
 
 
 public interface UserService {
@@ -13,6 +11,10 @@ public interface UserService {
     User update(UpdateCommand updateCommand);
 
     void disable(DisableCommand disableCommand);
+
+    void addBookmark(AddBookmarkCommand addBookmarkCommand);
+
+    void followTopic(FollowTopicCommand followTopicCommand);
 
     User get(String userId);
 }

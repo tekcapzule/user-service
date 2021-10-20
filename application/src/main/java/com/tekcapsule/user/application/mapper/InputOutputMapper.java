@@ -3,12 +3,8 @@ package com.tekcapsule.user.application.mapper;
 import com.tekcapsule.core.domain.Command;
 import com.tekcapsule.core.domain.ExecBy;
 import com.tekcapsule.core.domain.Origin;
-import com.tekcapsule.user.application.function.input.CreateInput;
-import com.tekcapsule.user.application.function.input.DisableInput;
-import com.tekcapsule.user.application.function.input.UpdateInput;
-import com.tekcapsule.user.domain.command.CreateCommand;
-import com.tekcapsule.user.domain.command.DisableCommand;
-import com.tekcapsule.user.domain.command.UpdateCommand;
+import com.tekcapsule.user.application.function.input.*;
+import com.tekcapsule.user.domain.command.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 
@@ -49,6 +45,20 @@ public final class InputOutputMapper {
         BeanUtils.copyProperties(disableInput, disableCommand);
         addOrigin.apply(disableCommand, origin);
         return disableCommand;
+    };
+
+    public static final BiFunction<FollowTopicInput, Origin, FollowTopicCommand> buildFollowTopicCommandFromFollowTopicInput = (followTopicInput, origin) -> {
+        FollowTopicCommand followTopicCommand =  FollowTopicCommand.builder().build();
+        BeanUtils.copyProperties(followTopicInput, followTopicCommand);
+        addOrigin.apply(followTopicCommand, origin);
+        return followTopicCommand;
+    };
+
+    public static final BiFunction<AddBookmarkInput, Origin, AddBookmarkCommand> buildBookmarkCommandFromBookmarkInput = (addBookmarkInput, origin) -> {
+        AddBookmarkCommand addBookmarkCommand =  AddBookmarkCommand.builder().build();
+        BeanUtils.copyProperties(addBookmarkInput, addBookmarkCommand);
+        addOrigin.apply(addBookmarkCommand, origin);
+        return addBookmarkCommand;
     };
 
 }

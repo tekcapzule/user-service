@@ -1,15 +1,15 @@
 package com.tekcapsule.user.domain.service;
 
+import com.tekcapsule.user.domain.command.*;
 import com.tekcapsule.user.domain.repository.UserDynamoRepository;
-import com.tekcapsule.user.domain.command.CreateCommand;
-import com.tekcapsule.user.domain.command.DisableCommand;
-import com.tekcapsule.user.domain.command.UpdateCommand;
 import com.tekcapsule.user.domain.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Slf4j
@@ -65,10 +65,46 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void addBookmark(AddBookmarkCommand addBookmarkCommand) {
+
+        log.info(String.format("Entering add bookmark service - User Id:{0}, Capsule Id:{0}", addBookmarkCommand.getUserId(), addBookmarkCommand.getCapsuleId()));
+
+        User user = userDynamoRepository.findBy(addBookmarkCommand.getUserId());
+        if (user != null) {
+
+            List<String> bookMarks =user.getBookmarks();
+            bookMarks.add(addBookmarkCommand.getCapsuleId());
+
+            user.setUpdatedOn(addBookmarkCommand.getExecOn());
+            user.setUpdatedBy(addBookmarkCommand.getExecBy().getUserId());
+
+            userDynamoRepository.save(user);
+        }
+    }
+
+    @Override
+    public void followTopic(FollowTopicCommand followTopicCommand) {
+        log.info(String.format("Entering follow topic service - User Id:{0}, Topic Code:{0}", followTopicCommand.getUserId(),followTopicCommand.getTopicCode()));
+
+        User user = userDynamoRepository.findBy(followTopicCommand.getUserId());
+        if (user != null) {
+
+            List<String> followedTopics =user.getSubscribedTopics();
+            followedTopics.add(followTopicCommand.getTopicCode());
+
+            user.setUpdatedOn(followTopicCommand.getExecOn());
+            user.setUpdatedBy(followTopicCommand.getExecBy().getUserId());
+
+            userDynamoRepository.save(user);
+        }
+    }
+
+    @Override
     public User get(String userId) {
 
         log.info(String.format("Entering get user service - User Id:{0}", userId));
 
         return userDynamoRepository.findBy( userId);
     }
+
 }
