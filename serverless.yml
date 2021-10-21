@@ -45,7 +45,7 @@ functions:
     handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
     events:
       - http:
-          path: user/findById
+          path: user/get
           method: post
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: getFunction
@@ -61,10 +61,10 @@ functions:
     handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
     events:
       - http:
-          path: user/addBookmark
+          path: user/bookmark
           method: post
     environment:
-      SPRING_CLOUD_FUNCTION_DEFINITION: addBookmarkFunction
+      SPRING_CLOUD_FUNCTION_DEFINITION: bookmarkFunction
 
 
 resources:
