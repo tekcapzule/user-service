@@ -49,6 +49,23 @@ functions:
           method: post
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: getFunction
+  followUser:
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    events:
+      - http:
+          path: user/follow
+          method: post
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: followFunction
+  addBookmarkUser:
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    events:
+      - http:
+          path: user/addBookmark
+          method: post
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: addBookmarkFunction
+
 
 resources:
   Resources:

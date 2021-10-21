@@ -2,6 +2,7 @@ package com.tekcapsule.user.domain.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tekcapsule.core.domain.AggregateRoot;
@@ -21,6 +22,8 @@ public class User extends BaseDomainEntity<String> implements AggregateRoot {
 
     @DynamoDBHashKey(attributeName="userId")
     private String userId;
+    @DynamoDBRangeKey(attributeName="active")
+    private Boolean active;
     @DynamoDBAttribute(attributeName = "firstName")
     private String firstName;
     @DynamoDBAttribute(attributeName = "lastName")
@@ -35,6 +38,4 @@ public class User extends BaseDomainEntity<String> implements AggregateRoot {
     private String contactNumber;
     @DynamoDBAttribute(attributeName = "activeSince")
     private String activeSince;
-    @DynamoDBAttribute(attributeName="active")
-    private Boolean active;
 }
