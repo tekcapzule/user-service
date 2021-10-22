@@ -69,7 +69,7 @@ functions:
 
 resources:
   Resources:
-    productsTable:
+    userTableTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: User

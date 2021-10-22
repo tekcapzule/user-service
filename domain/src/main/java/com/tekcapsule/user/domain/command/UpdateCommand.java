@@ -14,7 +14,7 @@ public class UpdateCommand extends Command {
     private String userId;
     private String firstName;
     private String lastName;
-    private List<String> SubscribedTopics;
+    private List<String> subscribedTopics;
     private List<String> bookmarks;
     private String emailId;
     private String contactNumber;

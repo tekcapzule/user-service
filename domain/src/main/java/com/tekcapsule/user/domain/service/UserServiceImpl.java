@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(CreateCommand createCommand) {
 
-        log.info(String.format("Entering create user service - User Id:{0}", createCommand.getUserId()));
+        log.info(String.format("Entering create user service - User Id:%S", createCommand.getUserId()));
 
         User user = User.builder()
                 .active(true)
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(UpdateCommand updateCommand) {
 
-        log.info(String.format("Entering update user service - User Id:{0}", updateCommand.getUserId()));
+        log.info(String.format("Entering update user service - User Id:%S", updateCommand.getUserId()));
 
         User user = userDynamoRepository.findBy(updateCommand.getUserId());
         if (user != null) {
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void disable(DisableCommand disableCommand) {
 
-        log.info(String.format("Entering disable user service - User Id:{0}", disableCommand.getUserId()));
+        log.info(String.format("Entering disable user service - User Id:%S", disableCommand.getUserId()));
 
         userDynamoRepository.disable(disableCommand.getUserId());
     }
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addBookmark(AddBookmarkCommand addBookmarkCommand) {
 
-        log.info(String.format("Entering add bookmark service - User Id:{0}, Capsule Id:{0}", addBookmarkCommand.getUserId(), addBookmarkCommand.getCapsuleId()));
+        log.info(String.format("Entering add bookmark service - User Id:%S, Capsule Id:%S", addBookmarkCommand.getUserId(), addBookmarkCommand.getCapsuleId()));
 
         User user = userDynamoRepository.findBy(addBookmarkCommand.getUserId());
         if (user != null) {
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void followTopic(FollowTopicCommand followTopicCommand) {
-        log.info(String.format("Entering follow topic service - User Id:{0}, Topic Code:{0}", followTopicCommand.getUserId(),followTopicCommand.getTopicCode()));
+        log.info(String.format("Entering follow topic service - User Id:%S, Topic Code:%S", followTopicCommand.getUserId(),followTopicCommand.getTopicCode()));
 
         User user = userDynamoRepository.findBy(followTopicCommand.getUserId());
         if (user != null) {
@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(String userId) {
 
-        log.info(String.format("Entering get user service - User Id:{0}", userId));
+        log.info(String.format("Entering get user service - User Id:%S", userId));
 
         return userDynamoRepository.findBy( userId);
     }

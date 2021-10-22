@@ -36,7 +36,7 @@ public class FollowFunction implements Function<Message<FollowTopicInput>, Messa
 
         FollowTopicInput followTopicInput = followTopicInputMessage.getPayload();
 
-        log.info(String.format("Entering follow topic Function - User Id:{0}, Topic Id:{0}", followTopicInput.getUserId(),followTopicInput.getTopicCode()));
+        log.info(String.format("Entering follow topic Function - User Id:%S, Topic Id:%S", followTopicInput.getUserId(),followTopicInput.getTopicCode()));
 
         Origin origin = HeaderUtil.buildOriginFromHeaders(followTopicInputMessage.getHeaders());
 
