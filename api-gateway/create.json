@@ -21,7 +21,10 @@
       "type": "string"
     },
     "subscribedTopics": {
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "emailId": {
       "type": "string"
