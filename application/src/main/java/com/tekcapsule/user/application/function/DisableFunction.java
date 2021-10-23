@@ -41,7 +41,6 @@ public class DisableFunction implements Function<Message<DisableInput>, Message<
         userService.disable(disableCommand);
         Map<String, Object> responseHeader = new HashMap();
         responseHeader.put(AppConstants.HTTP_STATUS_CODE_HEADER, HttpStatus.OK.value());
-
         return new GenericMessage( responseHeader);
     }
 }
