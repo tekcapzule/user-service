@@ -72,7 +72,16 @@ public class UserServiceImpl implements UserService {
 
         log.info(String.format("Entering disable user service - User Id:%s", disableCommand.getUserId()));
 
-        userDynamoRepository.disable(disableCommand.getUserId());
+        User user = userDynamoRepository.findBy(disableCommand.getUserId());
+        if (user != null) {
+
+            user.setActive(false);
+
+            user.setUpdatedOn(disableCommand.getExecOn());
+            user.setUpdatedBy(disableCommand.getExecBy().getUserId());
+
+            userDynamoRepository.save(user);
+        }
     }
 
     @Override
@@ -83,7 +92,7 @@ public class UserServiceImpl implements UserService {
         User user = userDynamoRepository.findBy(addBookmarkCommand.getUserId());
         if (user != null) {
 
-            List<String> bookMarks =user.getBookmarks();
+            List<String> bookMarks = user.getBookmarks();
             bookMarks.add(addBookmarkCommand.getCapsuleId());
 
             user.setUpdatedOn(addBookmarkCommand.getExecOn());
@@ -95,12 +104,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void followTopic(FollowTopicCommand followTopicCommand) {
-        log.info(String.format("Entering follow topic service - User Id:%s, Topic Code:%s", followTopicCommand.getUserId(),followTopicCommand.getTopicCode()));
+        log.info(String.format("Entering follow topic service - User Id:%s, Topic Code:%s", followTopicCommand.getUserId(), followTopicCommand.getTopicCode()));
 
         User user = userDynamoRepository.findBy(followTopicCommand.getUserId());
         if (user != null) {
 
-            List<String> followedTopics =user.getSubscribedTopics();
+            List<String> followedTopics = user.getSubscribedTopics();
             followedTopics.add(followTopicCommand.getTopicCode());
 
             user.setUpdatedOn(followTopicCommand.getExecOn());
@@ -115,7 +124,7 @@ public class UserServiceImpl implements UserService {
 
         log.info(String.format("Entering get user service - User Id:%s", userId));
 
-        return userDynamoRepository.findBy( userId);
+        return userDynamoRepository.findBy(userId);
     }
 
 }

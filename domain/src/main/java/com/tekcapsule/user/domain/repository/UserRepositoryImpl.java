@@ -37,12 +37,4 @@ public class UserRepositoryImpl implements UserDynamoRepository {
         return user;
     }
 
-    @Override
-    public void disable( String id) {
-        User user = findBy( id);
-        if (user != null) {
-            user.setActive(false);
-            dynamo.save(user);
-        }
-    }
 }
