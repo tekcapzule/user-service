@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "BookmarkInputModel",
+  "type": "object",
+  "required": [
+    "userId",
+    "capsuleId"
+  ],
+  "properties": {
+    "userId": {
+      "type": "string"
+    },
+    "name": {
+      "capsuleId": "string"
+    }
+  }
+}

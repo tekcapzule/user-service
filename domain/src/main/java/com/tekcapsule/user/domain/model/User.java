@@ -18,11 +18,11 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User extends BaseDomainEntity<String> implements AggregateRoot {
+public class User extends BaseDomainEntity implements AggregateRoot {
 
     @DynamoDBHashKey(attributeName="userId")
     private String userId;
-    @DynamoDBRangeKey(attributeName="active")
+    @DynamoDBAttribute(attributeName="active")
     private Boolean active;
     @DynamoDBAttribute(attributeName = "firstName")
     private String firstName;

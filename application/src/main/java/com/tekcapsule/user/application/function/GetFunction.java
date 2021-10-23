@@ -29,7 +29,7 @@ public class GetFunction implements Function<Message<GetInput>, Message<User>> {
     public Message<User> apply(Message<GetInput> getInputMessage) {
         GetInput getInput = getInputMessage.getPayload();
 
-        log.info(String.format("Entering get user Function -  User Id:%S", getInput.getUserId()));
+        log.info(String.format("Entering get user Function -  User Id:%s", getInput.getUserId()));
 
         User user = userService.get(getInput.getUserId());
         Map<String, Object> responseHeader = new HashMap();

@@ -6,9 +6,9 @@ import com.tekcapsule.user.domain.model.User;
 
 public interface UserService {
 
-    User create(CreateCommand createCommand);
+    void create(CreateCommand createCommand);
 
-    User update(UpdateCommand updateCommand);
+    void update(UpdateCommand updateCommand);
 
     void disable(DisableCommand disableCommand);
 

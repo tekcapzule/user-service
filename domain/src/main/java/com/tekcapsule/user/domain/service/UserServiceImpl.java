@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(CreateCommand createCommand) {
+    public void create(CreateCommand createCommand) {
 
-        log.info(String.format("Entering create user service - User Id:%S", createCommand.getUserId()));
+        log.info(String.format("Entering create user service - User Id:%s", createCommand.getUserId()));
 
         User user = User.builder()
                 .active(true)
@@ -36,13 +36,13 @@ public class UserServiceImpl implements UserService {
         user.setUpdatedOn(createCommand.getExecOn());
         user.setAddedBy(createCommand.getExecBy().getUserId());
 
-        return userDynamoRepository.save(user);
+        userDynamoRepository.save(user);
     }
 
     @Override
-    public User update(UpdateCommand updateCommand) {
+    public void update(UpdateCommand updateCommand) {
 
-        log.info(String.format("Entering update user service - User Id:%S", updateCommand.getUserId()));
+        log.info(String.format("Entering update user service - User Id:%s", updateCommand.getUserId()));
 
         User user = userDynamoRepository.findBy(updateCommand.getUserId());
         if (user != null) {
@@ -53,13 +53,12 @@ public class UserServiceImpl implements UserService {
 
             userDynamoRepository.save(user);
         }
-        return user;
     }
 
     @Override
     public void disable(DisableCommand disableCommand) {
 
-        log.info(String.format("Entering disable user service - User Id:%S", disableCommand.getUserId()));
+        log.info(String.format("Entering disable user service - User Id:%s", disableCommand.getUserId()));
 
         userDynamoRepository.disable(disableCommand.getUserId());
     }
@@ -67,7 +66,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addBookmark(AddBookmarkCommand addBookmarkCommand) {
 
-        log.info(String.format("Entering add bookmark service - User Id:%S, Capsule Id:%S", addBookmarkCommand.getUserId(), addBookmarkCommand.getCapsuleId()));
+        log.info(String.format("Entering add bookmark service - User Id:%s, Capsule Id:%s", addBookmarkCommand.getUserId(), addBookmarkCommand.getCapsuleId()));
 
         User user = userDynamoRepository.findBy(addBookmarkCommand.getUserId());
         if (user != null) {
@@ -84,7 +83,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void followTopic(FollowTopicCommand followTopicCommand) {
-        log.info(String.format("Entering follow topic service - User Id:%S, Topic Code:%S", followTopicCommand.getUserId(),followTopicCommand.getTopicCode()));
+        log.info(String.format("Entering follow topic service - User Id:%s, Topic Code:%s", followTopicCommand.getUserId(),followTopicCommand.getTopicCode()));
 
         User user = userDynamoRepository.findBy(followTopicCommand.getUserId());
         if (user != null) {
@@ -102,7 +101,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(String userId) {
 
-        log.info(String.format("Entering get user service - User Id:%S", userId));
+        log.info(String.format("Entering get user service - User Id:%s", userId));
 
         return userDynamoRepository.findBy( userId);
     }

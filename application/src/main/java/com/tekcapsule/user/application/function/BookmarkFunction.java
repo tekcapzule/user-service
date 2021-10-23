@@ -4,11 +4,8 @@ import com.tekcapsule.core.domain.Origin;
 import com.tekcapsule.core.utils.HeaderUtil;
 import com.tekcapsule.user.application.config.AppConstants;
 import com.tekcapsule.user.application.function.input.AddBookmarkInput;
-import com.tekcapsule.user.application.function.input.CreateInput;
 import com.tekcapsule.user.application.mapper.InputOutputMapper;
 import com.tekcapsule.user.domain.command.AddBookmarkCommand;
-import com.tekcapsule.user.domain.command.CreateCommand;
-import com.tekcapsule.user.domain.model.User;
 import com.tekcapsule.user.domain.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,7 +19,7 @@ import java.util.function.Function;
 
 @Component
 @Slf4j
-public class BookmarkFunction implements Function<Message<AddBookmarkInput>, Message<User>> {
+public class BookmarkFunction implements Function<Message<AddBookmarkInput>, Message<Void>> {
 
     private final UserService userService;
 
@@ -31,11 +28,11 @@ public class BookmarkFunction implements Function<Message<AddBookmarkInput>, Mes
     }
 
     @Override
-    public Message<User> apply(Message<AddBookmarkInput> addBookmarkInputMessage) {
+    public Message<Void> apply(Message<AddBookmarkInput> addBookmarkInputMessage) {
 
         AddBookmarkInput addBookmarkInput = addBookmarkInputMessage.getPayload();
 
-        log.info(String.format("Entering add bookmark Function - User Id:%S, Capsule Id:%S", addBookmarkInput.getUserId(),addBookmarkInput.getCapsuleId()));
+        log.info(String.format("Entering add bookmark Function - User Id:%S, Capsule Id:%s", addBookmarkInput.getUserId(),addBookmarkInput.getCapsuleId()));
 
         Origin origin = HeaderUtil.buildOriginFromHeaders(addBookmarkInputMessage.getHeaders());
 

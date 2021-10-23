@@ -2,6 +2,7 @@ service: user-service
 package:
   version: 0.0.1-SNAPSHOT
   artifact: ./application/target/${self:service}-${self:package.version}-${self:provider}.jar
+  excludeDevDependencies: true
 provider:
   name: aws
   runtime: java11
@@ -14,55 +15,98 @@ provider:
         - "dynamodb:*"
       Resource: "*"
   environment:
-    APPLICATION_ENVIRONMENT: Dev
+    APPLICATION_ENVIRONMENT: ${opt:stage}
     CLOUD_REGION: US_East_2
 functions:
   createUser:
-    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
     events:
       - http:
           path: user/create
           method: post
+          cors: true
+          request:
+            schemas:
+              application/json:
+                schema: ${file(api-gateway/create.json)}
+                name: CreateUserModel
+                description: 'create user model'
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: createFunction
   updateUser:
-    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
     events:
       - http:
           path: user/update
           method: post
+          cors: true
+          request:
+            schemas:
+              application/json:
+                schema: ${file(api-gateway/update.json)}
+                name: UpdateUserModel
+                description: 'update user model'
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: updateFunction
   disableUser:
-    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
     events:
       - http:
           path: user/disable
           method: post
+          cors: true
+          request:
+            schemas:
+              application/json:
+                schema: ${file(api-gateway/disable.json)}
+                name: DisableUserModel
+                description: 'disable user model'
+
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: disableFunction
   getUser:
-    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
     events:
       - http:
           path: user/get
           method: post
+          cors: true
+          request:
+            schemas:
+              application/json:
+                schema: ${file(api-gateway/get.json)}
+                name: GetUserModel
+                description: 'get user model'
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: getFunction
   followUser:
-    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
     events:
       - http:
           path: user/follow
           method: post
+          cors: true
+          request:
+            schemas:
+              application/json:
+                schema: ${file(api-gateway/follow.json)}
+                name: FollowUserModel
+                description: 'follow user model'
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: followFunction
   addBookmarkUser:
-    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
     events:
       - http:
           path: user/bookmark
           method: post
+          cors: true
+          request:
+            schemas:
+              application/json:
+                schema: ${file(api-gateway/bookmark.json)}
+                name: AddBookmarkModel
+                description: 'add bookmark model'
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: bookmarkFunction
 
