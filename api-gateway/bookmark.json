@@ -10,7 +10,7 @@
     "userId": {
       "type": "string"
     },
-    "name": {
+    "capsuleId": {
       "capsuleId": "string"
     }
   }
