@@ -29,6 +29,12 @@ public class UserServiceImpl implements UserService {
 
         User user = User.builder()
                 .active(true)
+                .contactNumber(createCommand.getContactNumber())
+                .bookmarks(createCommand.getBookmarks())
+                .emailId(createCommand.getEmailId())
+                .firstName(createCommand.getFirstName())
+                .lastName(createCommand.getLastName())
+                .userId(createCommand.getUserId())
                 .activeSince(DateTime.now(DateTimeZone.UTC).toString())
                 .build();
 
@@ -47,6 +53,12 @@ public class UserServiceImpl implements UserService {
         User user = userDynamoRepository.findBy(updateCommand.getUserId());
         if (user != null) {
             user.setActive(true);
+            user.setFirstName(updateCommand.getFirstName());
+            user.setLastName(updateCommand.getLastName());
+            user.setBookmarks(updateCommand.getBookmarks());
+            user.setContactNumber(updateCommand.getContactNumber());
+            user.setEmailId(updateCommand.getEmailId());
+            user.setSubscribedTopics(updateCommand.getSubscribedTopics());
 
             user.setUpdatedOn(updateCommand.getExecOn());
             user.setUpdatedBy(updateCommand.getExecBy().getUserId());
