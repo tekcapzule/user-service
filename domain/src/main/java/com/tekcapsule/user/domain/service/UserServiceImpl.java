@@ -94,6 +94,7 @@ public class UserServiceImpl implements UserService {
 
             List<String> bookMarks = user.getBookmarks();
             bookMarks.add(addBookmarkCommand.getCapsuleId());
+            user.setBookmarks(bookMarks);
 
             user.setUpdatedOn(addBookmarkCommand.getExecOn());
             user.setUpdatedBy(addBookmarkCommand.getExecBy().getUserId());
@@ -111,6 +112,7 @@ public class UserServiceImpl implements UserService {
 
             List<String> followedTopics = user.getSubscribedTopics();
             followedTopics.add(followTopicCommand.getTopicCode());
+            user.setSubscribedTopics(followedTopics);
 
             user.setUpdatedOn(followTopicCommand.getExecOn());
             user.setUpdatedBy(followTopicCommand.getExecBy().getUserId());
