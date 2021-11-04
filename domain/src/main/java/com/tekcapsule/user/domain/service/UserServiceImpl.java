@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
 
             List<String> followedTopics = new ArrayList<>();
-            if (user.getBookmarks() != null) {
+            if (user.getSubscribedTopics() != null) {
                 followedTopics = user.getSubscribedTopics();
             }
 
