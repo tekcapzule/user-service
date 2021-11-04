@@ -25,6 +25,7 @@ functions:
           path: user/create
           method: post
           cors: true
+          async: true
           request:
             schemas:
               application/json:
@@ -40,6 +41,7 @@ functions:
           path: user/update
           method: post
           cors: true
+          async: true
           request:
             schemas:
               application/json:
@@ -55,6 +57,7 @@ functions:
           path: user/disable
           method: post
           cors: true
+          async: true
           request:
             schemas:
               application/json:
@@ -86,6 +89,7 @@ functions:
           path: user/follow
           method: post
           cors: true
+          async: true
           request:
             schemas:
               application/json:
@@ -101,6 +105,7 @@ functions:
           path: user/bookmark
           method: post
           cors: true
+          async: true
           request:
             schemas:
               application/json:
