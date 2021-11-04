@@ -9,6 +9,7 @@ import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -92,7 +93,10 @@ public class UserServiceImpl implements UserService {
         User user = userDynamoRepository.findBy(addBookmarkCommand.getUserId());
         if (user != null) {
 
-            List<String> bookMarks = user.getBookmarks();
+            List<String> bookMarks = new ArrayList<>();
+            if (user.getBookmarks() != null) {
+                bookMarks = user.getBookmarks();
+            }
             bookMarks.add(addBookmarkCommand.getCapsuleId());
             user.setBookmarks(bookMarks);
 
@@ -110,7 +114,11 @@ public class UserServiceImpl implements UserService {
         User user = userDynamoRepository.findBy(followTopicCommand.getUserId());
         if (user != null) {
 
-            List<String> followedTopics = user.getSubscribedTopics();
+            List<String> followedTopics = new ArrayList<>();
+            if (user.getBookmarks() != null) {
+                followedTopics = user.getSubscribedTopics();
+            }
+
             followedTopics.add(followTopicCommand.getTopicCode());
             user.setSubscribedTopics(followedTopics);
 

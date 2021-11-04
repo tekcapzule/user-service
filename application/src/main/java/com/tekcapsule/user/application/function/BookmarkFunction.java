@@ -32,7 +32,7 @@ public class BookmarkFunction implements Function<Message<AddBookmarkInput>, Mes
 
         AddBookmarkInput addBookmarkInput = addBookmarkInputMessage.getPayload();
 
-        log.info(String.format("Entering add bookmark Function - User Id:%S, Capsule Id:%s", addBookmarkInput.getUserId(),addBookmarkInput.getCapsuleId()));
+        log.info(String.format("Entering add bookmark Function - User Id:%s, Capsule Id:%s", addBookmarkInput.getUserId(),addBookmarkInput.getCapsuleId()));
 
         Origin origin = HeaderUtil.buildOriginFromHeaders(addBookmarkInputMessage.getHeaders());
 
