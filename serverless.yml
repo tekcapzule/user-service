@@ -116,7 +116,7 @@ resources:
     userTableTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: User
+        TableName: ${opt:stage}User
         AttributeDefinitions:
           - AttributeName: userId
             AttributeType: S
