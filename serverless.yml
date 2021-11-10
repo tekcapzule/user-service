@@ -24,7 +24,14 @@ functions:
       - http:
           path: user/create
           method: post
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-User-Login
+              - X-Channel-Code
+            allowCredentials: true
           request:
             schemas:
               application/json:
@@ -39,7 +46,14 @@ functions:
       - http:
           path: user/update
           method: post
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-User-Login
+              - X-Channel-Code
+            allowCredentials: true
           request:
             schemas:
               application/json:
@@ -54,7 +68,14 @@ functions:
       - http:
           path: user/disable
           method: post
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-User-Login
+              - X-Channel-Code
+            allowCredentials: true
           request:
             schemas:
               application/json:
@@ -70,7 +91,14 @@ functions:
       - http:
           path: user/get
           method: post
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-User-Login
+              - X-Channel-Code
+            allowCredentials: true
           request:
             schemas:
               application/json:
@@ -85,7 +113,14 @@ functions:
       - http:
           path: user/follow
           method: post
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-User-Login
+              - X-Channel-Code
+            allowCredentials: true
           request:
             schemas:
               application/json:
@@ -100,7 +135,14 @@ functions:
       - http:
           path: user/bookmark
           method: post
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-User-Login
+              - X-Channel-Code
+            allowCredentials: true
           request:
             schemas:
               application/json:
