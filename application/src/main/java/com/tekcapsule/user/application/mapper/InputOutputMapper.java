@@ -61,4 +61,11 @@ public final class InputOutputMapper {
         return addBookmarkCommand;
     };
 
+    public static final BiFunction<RemoveBookmarkInput, Origin, RemoveBookmarkCommand> buildRemoveBookmarkCommandFromRemoveBookmarkInput = (removeBookmarkInput, origin) -> {
+        RemoveBookmarkCommand removeBookmarkCommand =  RemoveBookmarkCommand.builder().build();
+        BeanUtils.copyProperties(removeBookmarkInput, removeBookmarkCommand);
+        addOrigin.apply(removeBookmarkCommand, origin);
+        return removeBookmarkCommand;
+    };
+
 }

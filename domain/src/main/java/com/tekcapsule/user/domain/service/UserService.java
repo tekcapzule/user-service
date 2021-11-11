@@ -14,6 +14,8 @@ public interface UserService {
 
     void addBookmark(AddBookmarkCommand addBookmarkCommand);
 
+    void removeBookmark(RemoveBookmarkCommand removeBookmarkCommand);
+
     void followTopic(FollowTopicCommand followTopicCommand);
 
     User get(String userId);

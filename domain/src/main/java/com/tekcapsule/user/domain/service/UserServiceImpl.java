@@ -108,6 +108,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void removeBookmark(RemoveBookmarkCommand removeBookmarkCommand) {
+
+        log.info(String.format("Entering remove bookmark service - User Id:%s, Capsule Id:%s", removeBookmarkCommand.getUserId(), removeBookmarkCommand.getCapsuleId()));
+
+        User user = userDynamoRepository.findBy(removeBookmarkCommand.getUserId());
+        if (user != null) {
+
+            List<String> bookMarks = new ArrayList<>();
+            if (user.getBookmarks() != null) {
+                bookMarks = user.getBookmarks();
+            }
+            bookMarks.remove(removeBookmarkCommand.getCapsuleId());
+            user.setBookmarks(bookMarks);
+
+            user.setUpdatedOn(removeBookmarkCommand.getExecOn());
+            user.setUpdatedBy(removeBookmarkCommand.getExecBy().getUserId());
+
+            userDynamoRepository.save(user);
+        }
+    }
+
+    @Override
     public void followTopic(FollowTopicCommand followTopicCommand) {
         log.info(String.format("Entering follow topic service - User Id:%s, Topic Code:%s", followTopicCommand.getUserId(), followTopicCommand.getTopicCode()));
 

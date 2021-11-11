@@ -151,7 +151,28 @@ functions:
                 description: 'add bookmark model'
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: bookmarkFunction
-
+  removeBookmarkUser:
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
+    events:
+      - http:
+          path: user/removeBookmark
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-User-Login
+              - X-Channel-Code
+            allowCredentials: true
+          request:
+            schemas:
+              application/json:
+                schema: ${file(api-gateway/removebookmark.json)}
+                name: RemoveBookmarkModel
+                description: 'Remove bookmark model'
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: RemoveBookmarkFunction
 
 resources:
   Resources:
