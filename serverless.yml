@@ -172,7 +172,7 @@ functions:
                 name: RemoveBookmarkModel
                 description: 'Remove bookmark model'
     environment:
-      SPRING_CLOUD_FUNCTION_DEFINITION: RemoveBookmarkFunction
+      SPRING_CLOUD_FUNCTION_DEFINITION: removeBookmarkFunction
 
 resources:
   Resources:
