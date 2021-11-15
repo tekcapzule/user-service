@@ -129,6 +129,28 @@ functions:
                 description: 'follow user model'
     environment:
       SPRING_CLOUD_FUNCTION_DEFINITION: followFunction
+  unfollowUser:
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
+    events:
+      - http:
+          path: user/unfollow
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-User-Login
+              - X-Channel-Code
+            allowCredentials: true
+          request:
+            schemas:
+              application/json:
+                schema: ${file(api-gateway/unfollow.json)}
+                name: UnfollowUserModel
+                description: 'unfollow user model'
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: unfollowFunction
   addBookmarkUser:
     handler: org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler
     events:

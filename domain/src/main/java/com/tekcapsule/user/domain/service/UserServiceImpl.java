@@ -152,6 +152,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void unfollowTopic(UnfollowTopicCommand unfollowTopicCommand) {
+        log.info(String.format("Entering unfollow topic service - User Id:%s, Topic Code:%s", unfollowTopicCommand.getUserId(), unfollowTopicCommand.getTopicCode()));
+
+        User user = userDynamoRepository.findBy(unfollowTopicCommand.getUserId());
+        if (user != null) {
+
+            List<String> followedTopics = new ArrayList<>();
+            if (user.getSubscribedTopics() != null) {
+                followedTopics = user.getSubscribedTopics();
+            }
+
+            followedTopics.remove(unfollowTopicCommand.getTopicCode());
+            user.setSubscribedTopics(followedTopics);
+
+            user.setUpdatedOn(unfollowTopicCommand.getExecOn());
+            user.setUpdatedBy(unfollowTopicCommand.getExecBy().getUserId());
+
+            userDynamoRepository.save(user);
+        }
+    }
+
+    @Override
     public User get(String userId) {
 
         log.info(String.format("Entering get user service - User Id:%s", userId));

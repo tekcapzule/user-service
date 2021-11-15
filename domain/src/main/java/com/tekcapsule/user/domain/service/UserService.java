@@ -18,5 +18,7 @@ public interface UserService {
 
     void followTopic(FollowTopicCommand followTopicCommand);
 
+    void unfollowTopic(UnfollowTopicCommand unfollowTopicCommand);
+
     User get(String userId);
 }

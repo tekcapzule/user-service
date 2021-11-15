@@ -54,6 +54,13 @@ public final class InputOutputMapper {
         return followTopicCommand;
     };
 
+    public static final BiFunction<UnfollowTopicInput, Origin, UnfollowTopicCommand> buildUnfollowTopicCommandFromUnfollowTopicInput = (unfollowTopicInput, origin) -> {
+        UnfollowTopicCommand unfollowTopicCommand =  UnfollowTopicCommand.builder().build();
+        BeanUtils.copyProperties(unfollowTopicInput, unfollowTopicCommand);
+        addOrigin.apply(unfollowTopicCommand, origin);
+        return unfollowTopicCommand;
+    };
+
     public static final BiFunction<AddBookmarkInput, Origin, AddBookmarkCommand> buildBookmarkCommandFromBookmarkInput = (addBookmarkInput, origin) -> {
         AddBookmarkCommand addBookmarkCommand =  AddBookmarkCommand.builder().build();
         BeanUtils.copyProperties(addBookmarkInput, addBookmarkCommand);
