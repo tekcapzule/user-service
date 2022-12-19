@@ -198,6 +198,39 @@ functions:
       SPRING_CLOUD_FUNCTION_DEFINITION: removeBookmarkFunction
 
 resources:
+  extensions:
+    CreateUserLambdaFunction:
+      Properties:
+        SnapStart:
+          ApplyOn: PublishedVersions
+    UpdateUserLambdaFunction:
+      Properties:
+        SnapStart:
+          ApplyOn: PublishedVersions
+    DisableUserLambdaFunction:
+      Properties:
+        SnapStart:
+          ApplyOn: PublishedVersions
+    GetUserLambdaFunction:
+      Properties:
+        SnapStart:
+          ApplyOn: PublishedVersions
+    FollowUserLambdaFunction:
+      Properties:
+        SnapStart:
+          ApplyOn: PublishedVersions
+    UnfollowUserLambdaFunction:
+      Properties:
+        SnapStart:
+          ApplyOn: PublishedVersions
+    AddBookmarkUserLambdaFunction:
+      Properties:
+        SnapStart:
+          ApplyOn: PublishedVersions
+    RemoveBookmarkUserLambdaFunction:
+      Properties:
+        SnapStart:
+          ApplyOn: PublishedVersions
   Resources:
     userTableTable:
       Type: AWS::DynamoDB::Table
