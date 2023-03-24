@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.tekcapsule</groupId>
     <artifactId>user-domain</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <name>User Domain</name>
     <description>User Domain</description>
     <properties>
@@ -63,7 +63,7 @@
         <repository>
             <id>user</id>
             <name>GitHub TekCapsule Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/tekcapsule/tekcapsule-core</url>
+            <url>https://maven.pkg.github.com/tekcapsule/user-service</url>
         </repository>
     </distributionManagement>
 </project>

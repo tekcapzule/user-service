@@ -5,7 +5,7 @@
 
     <groupId>com.tekcapsule</groupId>
     <artifactId>user-application</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <packaging>pom</packaging>
     <name>User Application</name>
     <description>User Application</description>
@@ -31,7 +31,7 @@
         <repository>
             <id>user</id>
             <name>GitHub TekCapsule Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/tekcapsule/tekcapsule-core</url>
+            <url>https://maven.pkg.github.com/tekcapsule/user-service</url>
         </repository>
     </distributionManagement>
 </project>

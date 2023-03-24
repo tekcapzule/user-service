@@ -141,7 +141,7 @@ public class UserServiceImpl implements UserService {
                 followedTopics = user.getSubscribedTopics();
             }
 
-            followedTopics.add(followTopicCommand.getTopicCode());
+            followedTopics.addAll(followTopicCommand.getTopicCode());
             user.setSubscribedTopics(followedTopics);
 
             user.setUpdatedOn(followTopicCommand.getExecOn());
@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
                 followedTopics = user.getSubscribedTopics();
             }
 
-            followedTopics.remove(unfollowTopicCommand.getTopicCode());
+            followedTopics.removeAll(unfollowTopicCommand.getTopicCode());
             user.setSubscribedTopics(followedTopics);
 
             user.setUpdatedOn(unfollowTopicCommand.getExecOn());
