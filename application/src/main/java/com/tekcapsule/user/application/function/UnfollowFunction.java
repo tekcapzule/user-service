@@ -38,7 +38,7 @@ public class UnfollowFunction implements Function<Message<UnfollowTopicInput>, M
         String stage = appConfig.getStage().toUpperCase();
         try {
             UnfollowTopicInput unfollowTopicInput = unfollowTopicInputMessage.getPayload();
-            log.info(String.format("Entering unfollow topic Function - User Id:%s, Topic Id:%s", unfollowTopicInput.getUserId(), unfollowTopicInput.getTopicCode()));
+            log.info(String.format("Entering unfollow topic Function - User Id:%s, Topic Id:%s", unfollowTopicInput.getUserId(), unfollowTopicInput.getTopicCodes()));
             Origin origin = HeaderUtil.buildOriginFromHeaders(unfollowTopicInputMessage.getHeaders());
             UnfollowTopicCommand unfollowTopicCommand = InputOutputMapper.buildUnfollowTopicCommandFromUnfollowTopicInput.apply(unfollowTopicInput, origin);
             userService.unfollowTopic(unfollowTopicCommand);

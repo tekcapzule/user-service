@@ -40,7 +40,7 @@ public class FollowFunction implements Function<Message<FollowTopicInput>, Messa
         String stage = appConfig.getStage().toUpperCase();
         try {
             FollowTopicInput followTopicInput = followTopicInputMessage.getPayload();
-            log.info(String.format("Entering follow topic Function - User Id:%s, Topic Id:%s", followTopicInput.getUserId(), followTopicInput.getTopicCode()));
+            log.info(String.format("Entering follow topic Function - User Id:%s, Topic Id:%s", followTopicInput.getUserId(), followTopicInput.getTopicCodes()));
             Origin origin = HeaderUtil.buildOriginFromHeaders(followTopicInputMessage.getHeaders());
             FollowTopicCommand followTopicCommand = InputOutputMapper.buildFollowTopicCommandFromFollowTopicInput.apply(followTopicInput, origin);
             userService.followTopic(followTopicCommand);

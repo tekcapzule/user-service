@@ -131,17 +131,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void followTopic(FollowTopicCommand followTopicCommand) {
-        log.info(String.format("Entering follow topic service - User Id:%s, Topic Code:%s", followTopicCommand.getUserId(), followTopicCommand.getTopicCode()));
+        log.info(String.format("Entering follow topic service - User Id:%s, Topic Code:%s", followTopicCommand.getUserId(), followTopicCommand.getTopicCodes()));
 
         User user = userDynamoRepository.findBy(followTopicCommand.getUserId());
         if (user != null) {
 
             List<String> followedTopics = new ArrayList<>();
-            if (user.getSubscribedTopics() != null) {
-                followedTopics = user.getSubscribedTopics();
-            }
+//            if (user.getSubscribedTopics() != null) {
+//                followedTopics = user.getSubscribedTopics();
+//            }
 
-            followedTopics.addAll(followTopicCommand.getTopicCode());
+            followedTopics.addAll(followTopicCommand.getTopicCodes());
             user.setSubscribedTopics(followedTopics);
 
             user.setUpdatedOn(followTopicCommand.getExecOn());
@@ -153,7 +153,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void unfollowTopic(UnfollowTopicCommand unfollowTopicCommand) {
-        log.info(String.format("Entering unfollow topic service - User Id:%s, Topic Code:%s", unfollowTopicCommand.getUserId(), unfollowTopicCommand.getTopicCode()));
+        log.info(String.format("Entering unfollow topic service - User Id:%s, Topic Code:%s", unfollowTopicCommand.getUserId(), unfollowTopicCommand.getTopicCodes()));
 
         User user = userDynamoRepository.findBy(unfollowTopicCommand.getUserId());
         if (user != null) {
@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
                 followedTopics = user.getSubscribedTopics();
             }
 
-            followedTopics.removeAll(unfollowTopicCommand.getTopicCode());
+            followedTopics.removeAll(unfollowTopicCommand.getTopicCodes());
             user.setSubscribedTopics(followedTopics);
 
             user.setUpdatedOn(unfollowTopicCommand.getExecOn());

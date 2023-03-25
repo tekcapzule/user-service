@@ -11,5 +11,5 @@ import java.util.List;
 @NoArgsConstructor
 public class FollowTopicInput {
     private String userId;
-    private List<String> topicCode;
+    private List<String> topicCodes;
 }
