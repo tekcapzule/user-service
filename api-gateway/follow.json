@@ -4,14 +4,17 @@
   "type": "object",
   "required": [
     "userId",
-    "topicCode"
+    "topicCodes"
   ],
   "properties": {
     "userId": {
       "type": "string"
     },
-    "topicCode": {
-      "type": "string"
+    "topicCodes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   }
 }

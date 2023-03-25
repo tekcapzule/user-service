@@ -12,5 +12,5 @@ import java.util.List;
 @Builder
 public class FollowTopicCommand extends Command {
     private String userId;
-    private List<String> topicCode;
+    private List<String> topicCodes;
 }
