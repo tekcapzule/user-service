@@ -5,5 +5,6 @@ import com.tekcapsule.user.domain.model.User;
 
 
 public interface UserDynamoRepository extends CrudRepository<User, String> {
+    int getAllUsersCount();
 
 }

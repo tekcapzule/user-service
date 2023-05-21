@@ -232,6 +232,27 @@ Resources:
             RestApiId:
               Ref: UserApi
 
+  GetUsersCountFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${Stage}-User-GetUsersCount"
+      SnapStart:
+        ApplyOn: PublishedVersions
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UserTable
+      Environment:
+        Variables:
+          SPRING_CLOUD_FUNCTION_DEFINITION: getCountFunction
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: user/getCount
+            Method: post
+            RestApiId:
+              Ref: UserApi
+
 
   # Set Output Variable
 

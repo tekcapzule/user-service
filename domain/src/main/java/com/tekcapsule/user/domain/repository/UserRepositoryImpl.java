@@ -2,6 +2,7 @@ package com.tekcapsule.user.domain.repository;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.model.Select;
 import com.tekcapsule.user.domain.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class UserRepositoryImpl implements UserDynamoRepository {
     public User save(User user) {
         dynamo.save(user);
         return user;
+    }
+
+    @Override
+    public int getAllUsersCount() {
+        return dynamo.count(User.class,new DynamoDBScanExpression().withSelect(Select.COUNT));
     }
 
 }
