@@ -26,7 +26,7 @@ Globals:
       Variables:
         TABLE: !Ref UserTable
         APPLICATION_ENVIRONMENT: !Ref Stage
-        CLOUD_REGION: US_West_2
+        CLOUD_REGION: us-east-1
         MAIN_CLASS: com.tekcapsule.user.application.UserApplication
         JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
 
@@ -231,6 +231,8 @@ Resources:
             Method: post
             RestApiId:
               Ref: UserApi
+
+
   # Set Output Variable
 
 Outputs:
