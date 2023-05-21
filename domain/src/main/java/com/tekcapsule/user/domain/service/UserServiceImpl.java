@@ -181,4 +181,11 @@ public class UserServiceImpl implements UserService {
         return userDynamoRepository.findBy(userId);
     }
 
+    @Override
+    public int getAllUsersCount() {
+        log.info("Entering getall users count service");
+        return userDynamoRepository.getAllUsersCount();
+    }
+
+
 }

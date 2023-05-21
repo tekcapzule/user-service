@@ -21,4 +21,6 @@ public interface UserService {
     void unfollowTopic(UnfollowTopicCommand unfollowTopicCommand);
 
     User get(String userId);
+
+    int getAllUsersCount();
 }
