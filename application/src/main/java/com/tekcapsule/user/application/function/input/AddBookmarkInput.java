@@ -1,6 +1,7 @@
 package com.tekcapsule.user.application.function.input;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tekcapsule.user.domain.model.ResourceType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddBookmarkInput {
     private String userId;
-    private String capsuleId;
+    private String resourceId;
+    private ResourceType resourceType;
 }

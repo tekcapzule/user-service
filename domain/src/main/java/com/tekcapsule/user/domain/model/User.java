@@ -6,6 +6,7 @@ import com.tekcapsule.core.domain.AggregateRoot;
 import com.tekcapsule.core.domain.BaseDomainEntity;
 import lombok.*;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @Data
@@ -26,7 +27,7 @@ public class User extends BaseDomainEntity implements AggregateRoot {
     @DynamoDBAttribute(attributeName = "lastName")
     private String lastName;
     @DynamoDBAttribute(attributeName = "bookmarks")
-    private List<String> bookmarks;
+    private Bookmarks bookmarks;
     @DynamoDBAttribute(attributeName = "SubscribedTopics")
     private List<String> subscribedTopics;
     @DynamoDBAttribute(attributeName = "phoneNumber")
