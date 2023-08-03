@@ -2,6 +2,7 @@ package com.tekcapsule.user.domain.command;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tekcapsule.core.domain.Command;
+import com.tekcapsule.user.domain.model.PhoneNumber;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,8 +15,8 @@ public class UpdateCommand extends Command {
     private String userId;
     private String firstName;
     private String lastName;
+    private String emailId;
+    private PhoneNumber phoneNumber;
     private List<String> subscribedTopics;
     private List<String> bookmarks;
-    private String emailId;
-    private String contactNumber;
 }

@@ -1,9 +1,6 @@
 package com.tekcapsule.user.domain.model;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tekcapsule.core.domain.AggregateRoot;
 import com.tekcapsule.core.domain.BaseDomainEntity;
@@ -22,8 +19,8 @@ public class User extends BaseDomainEntity implements AggregateRoot {
 
     @DynamoDBHashKey(attributeName="userId")
     private String userId;
-    @DynamoDBAttribute(attributeName="active")
-    private Boolean active;
+    @DynamoDBAttribute(attributeName = "emailId")
+    private String emailId;
     @DynamoDBAttribute(attributeName = "firstName")
     private String firstName;
     @DynamoDBAttribute(attributeName = "lastName")
@@ -32,10 +29,11 @@ public class User extends BaseDomainEntity implements AggregateRoot {
     private List<String> bookmarks;
     @DynamoDBAttribute(attributeName = "SubscribedTopics")
     private List<String> subscribedTopics;
-    @DynamoDBAttribute(attributeName = "emailId")
-    private String emailId;
-    @DynamoDBAttribute(attributeName = "contactNumber")
-    private String contactNumber;
+    @DynamoDBAttribute(attributeName = "phoneNumber")
+    private PhoneNumber phoneNumber;
     @DynamoDBAttribute(attributeName = "activeSince")
     private String activeSince;
+    @DynamoDBAttribute(attributeName = "status")
+    @DynamoDBTypeConvertedEnum
+    private Status status;
 }

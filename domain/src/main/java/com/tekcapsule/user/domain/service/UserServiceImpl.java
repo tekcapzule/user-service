@@ -1,6 +1,8 @@
 package com.tekcapsule.user.domain.service;
 
 import com.tekcapsule.user.domain.command.*;
+import com.tekcapsule.user.domain.model.PhoneNumber;
+import com.tekcapsule.user.domain.model.Status;
 import com.tekcapsule.user.domain.repository.UserDynamoRepository;
 import com.tekcapsule.user.domain.model.User;
 import lombok.extern.slf4j.Slf4j;
@@ -26,17 +28,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void create(CreateCommand createCommand) {
 
-        log.info(String.format("Entering create user service - User Id:%s", createCommand.getUserId()));
+        log.info(String.format("Entering create user service - User Id:%s", createCommand.getEmailId()));
 
         User user = User.builder()
-                .active(true)
-                .contactNumber(createCommand.getContactNumber())
-                .bookmarks(createCommand.getBookmarks())
+                .userId(createCommand.getEmailId())
                 .emailId(createCommand.getEmailId())
                 .firstName(createCommand.getFirstName())
                 .lastName(createCommand.getLastName())
-                .userId(createCommand.getUserId())
+                .phoneNumber(createCommand.getPhoneNumber())
+                .subscribedTopics(createCommand.getSubscribedTopics())
                 .activeSince(DateTime.now(DateTimeZone.UTC).toString())
+                .status(Status.ACTIVE)
                 .build();
 
         user.setAddedOn(createCommand.getExecOn());
@@ -53,17 +55,14 @@ public class UserServiceImpl implements UserService {
 
         User user = userDynamoRepository.findBy(updateCommand.getUserId());
         if (user != null) {
-            user.setActive(true);
+            user.setEmailId(updateCommand.getEmailId());
             user.setFirstName(updateCommand.getFirstName());
             user.setLastName(updateCommand.getLastName());
-            user.setBookmarks(updateCommand.getBookmarks());
-            user.setContactNumber(updateCommand.getContactNumber());
-            user.setEmailId(updateCommand.getEmailId());
+            user.setPhoneNumber(updateCommand.getPhoneNumber());
             user.setSubscribedTopics(updateCommand.getSubscribedTopics());
-
+            user.setBookmarks(updateCommand.getBookmarks());
             user.setUpdatedOn(updateCommand.getExecOn());
             user.setUpdatedBy(updateCommand.getExecBy().getUserId());
-
             userDynamoRepository.save(user);
         }
     }
@@ -76,7 +75,7 @@ public class UserServiceImpl implements UserService {
         User user = userDynamoRepository.findBy(disableCommand.getUserId());
         if (user != null) {
 
-            user.setActive(false);
+            user.setStatus(Status.INACTIVE);
 
             user.setUpdatedOn(disableCommand.getExecOn());
             user.setUpdatedBy(disableCommand.getExecBy().getUserId());
@@ -137,10 +136,6 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
 
             List<String> followedTopics = new ArrayList<>();
-//            if (user.getSubscribedTopics() != null) {
-//                followedTopics = user.getSubscribedTopics();
-//            }
-
             followedTopics.addAll(followTopicCommand.getTopicCodes());
             user.setSubscribedTopics(followedTopics);
 
