@@ -2,6 +2,7 @@ package com.tekcapsule.user.domain.command;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tekcapsule.core.domain.Command;
+import com.tekcapsule.user.domain.model.ResourceType;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,5 +11,6 @@ import lombok.Data;
 @Builder
 public class RemoveBookmarkCommand extends Command {
     private String userId;
-    private String capsuleId;
+    private String resourceId;
+    private ResourceType resourceType;
 }
