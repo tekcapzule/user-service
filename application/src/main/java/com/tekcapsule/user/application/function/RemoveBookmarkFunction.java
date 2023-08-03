@@ -40,7 +40,7 @@ public class RemoveBookmarkFunction implements Function<Message<RemoveBookmarkIn
         String stage = appConfig.getStage().toUpperCase();
         try {
             RemoveBookmarkInput removeBookmarkInput = removeBookmarkInputMessage.getPayload();
-            log.info(String.format("Entering remove bookmark Function - User Id:%s, Capsule Id:%s", removeBookmarkInput.getUserId(), removeBookmarkInput.getCapsuleId()));
+            log.info(String.format("Entering remove bookmark Function - User Id:%s, Resource Id:%s", removeBookmarkInput.getUserId(), removeBookmarkInput.getResourceId()));
             Origin origin = HeaderUtil.buildOriginFromHeaders(removeBookmarkInputMessage.getHeaders());
             RemoveBookmarkCommand removeBookmarkCommand = InputOutputMapper.buildRemoveBookmarkCommandFromRemoveBookmarkInput.apply(removeBookmarkInput, origin);
             userService.removeBookmark(removeBookmarkCommand);
