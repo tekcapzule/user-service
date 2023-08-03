@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @DynamoDBDocument
 public class PhoneNumber {
-    private int countryCode;
-    private int number;
+    private String countryCode;
+    private String number;
 }

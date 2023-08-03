@@ -11,11 +11,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 public class CreateInput {
-    private String userId;
     private String firstName;
     private String lastName;
     private String emailId;
     private PhoneNumber phoneNumber;
     private List<String> subscribedTopics;
-    private List<String> bookmarks;
 }

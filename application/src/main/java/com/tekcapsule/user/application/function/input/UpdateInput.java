@@ -17,4 +17,5 @@ public class UpdateInput {
     private List<String> subscribedTopics;
     private String emailId;
     private PhoneNumber phoneNumber;
+    private List<String> bookmarks;
 }
