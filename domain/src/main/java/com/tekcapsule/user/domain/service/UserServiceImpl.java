@@ -1,10 +1,8 @@
 package com.tekcapsule.user.domain.service;
 
 import com.tekcapsule.user.domain.command.*;
-import com.tekcapsule.user.domain.model.PhoneNumber;
-import com.tekcapsule.user.domain.model.Status;
+import com.tekcapsule.user.domain.model.*;
 import com.tekcapsule.user.domain.repository.UserDynamoRepository;
-import com.tekcapsule.user.domain.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -12,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -87,17 +87,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addBookmark(AddBookmarkCommand addBookmarkCommand) {
 
-        log.info(String.format("Entering add bookmark service - User Id:%s, Capsule Id:%s", addBookmarkCommand.getUserId(), addBookmarkCommand.getCapsuleId()));
+        log.info(String.format("Entering add bookmark service - User Id:%s, resource Id:%s, resource type:%s", addBookmarkCommand.getUserId(), addBookmarkCommand.getResourceId(),
+                addBookmarkCommand.getResourceType()));
 
         User user = userDynamoRepository.findBy(addBookmarkCommand.getUserId());
         if (user != null) {
-
-            List<String> bookMarks = new ArrayList<>();
-            if (user.getBookmarks() != null) {
-                bookMarks = user.getBookmarks();
+            Bookmarks bookMarks = user.getBookmarks();
+            if (bookMarks != null) {
+                ResourceType resourceType = addBookmarkCommand.getResourceType();
+                String resourceId = addBookmarkCommand.getResourceId();
+                HashMap<ResourceType, List<String>> bookmark = bookMarks.getBookmark();
+                if (bookmark.containsKey(resourceType)) {
+                    bookmark.get(resourceId).add(resourceId);
+                } else {
+                    bookmark.put(resourceType, Arrays.asList(resourceId));
+                }
+                bookMarks.setBookmark(bookmark);
+                user.setBookmarks(bookMarks);
             }
-            bookMarks.add(addBookmarkCommand.getCapsuleId());
-            user.setBookmarks(bookMarks);
 
             user.setUpdatedOn(addBookmarkCommand.getExecOn());
             user.setUpdatedBy(addBookmarkCommand.getExecBy().getUserId());
@@ -109,17 +116,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeBookmark(RemoveBookmarkCommand removeBookmarkCommand) {
 
-        log.info(String.format("Entering remove bookmark service - User Id:%s, Capsule Id:%s", removeBookmarkCommand.getUserId(), removeBookmarkCommand.getCapsuleId()));
+        log.info(String.format("Entering remove bookmark service - User Id:%s, resource Id:%s, resource type:%s", removeBookmarkCommand.getUserId(), removeBookmarkCommand.getResourceId(),
+                removeBookmarkCommand.getResourceType()));
 
         User user = userDynamoRepository.findBy(removeBookmarkCommand.getUserId());
         if (user != null) {
-
-            List<String> bookMarks = new ArrayList<>();
-            if (user.getBookmarks() != null) {
-                bookMarks = user.getBookmarks();
+            Bookmarks bookMarks = user.getBookmarks();
+            if ( bookMarks != null) {
+                ResourceType resourceType = removeBookmarkCommand.getResourceType();
+                String resourceId = removeBookmarkCommand.getResourceId();
+                HashMap<ResourceType, List<String>> bookmark = bookMarks.getBookmark();
+                if (bookmark.containsKey(resourceType)) {
+                    bookmark.get(resourceType).remove(resourceId);
+                }
+                bookMarks.setBookmark(bookmark);
+                user.setBookmarks(bookMarks);
             }
-            bookMarks.remove(removeBookmarkCommand.getCapsuleId());
-            user.setBookmarks(bookMarks);
 
             user.setUpdatedOn(removeBookmarkCommand.getExecOn());
             user.setUpdatedBy(removeBookmarkCommand.getExecBy().getUserId());

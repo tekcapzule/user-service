@@ -1,6 +1,7 @@
 package com.tekcapsule.user.application.function.input;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tekcapsule.user.domain.model.Bookmarks;
 import com.tekcapsule.user.domain.model.PhoneNumber;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,5 @@ public class UpdateInput {
     private List<String> subscribedTopics;
     private String emailId;
     private PhoneNumber phoneNumber;
-    private List<String> bookmarks;
+    private Bookmarks bookmarks;
 }
