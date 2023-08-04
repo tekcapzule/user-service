@@ -90,11 +90,12 @@ public class UserServiceImpl implements UserService {
 
         User user = userDynamoRepository.findBy(addBookmarkCommand.getUserId());
         if (user != null) {
-            List<Bookmark> bookMarks = user.getBookmarks();
-            if ( bookMarks != null) {
-                bookMarks.add(addBookmarkCommand.getBookmark());
-                user.setBookmarks(bookMarks);
+            List<Bookmark> bookMarks = new ArrayList<>();
+            if ( user.getBookmarks() != null) {
+                bookMarks.addAll(user.getBookmarks());
             }
+            bookMarks.add(addBookmarkCommand.getBookmark());
+            user.setBookmarks(bookMarks);
 
             user.setUpdatedOn(addBookmarkCommand.getExecOn());
             user.setUpdatedBy(addBookmarkCommand.getExecBy().getUserId());
