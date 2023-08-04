@@ -4,7 +4,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConvertedEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@DynamoDBTypeConvertedEnum
 @AllArgsConstructor
 public enum ResourceType {
     ARTICLE("Article"),

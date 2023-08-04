@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -87,22 +85,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addBookmark(AddBookmarkCommand addBookmarkCommand) {
 
-        log.info(String.format("Entering add bookmark service - User Id:%s, resource Id:%s, resource type:%s", addBookmarkCommand.getUserId(), addBookmarkCommand.getResourceId(),
-                addBookmarkCommand.getResourceType()));
+        log.info(String.format("Entering add bookmark service - User Id:%s, resource Id:%s, resource type:%s", addBookmarkCommand.getUserId(),
+                addBookmarkCommand.getBookmark().getResourceId(), addBookmarkCommand.getBookmark().getResourceType()));
 
         User user = userDynamoRepository.findBy(addBookmarkCommand.getUserId());
         if (user != null) {
-            Bookmarks bookMarks = user.getBookmarks();
-            if (bookMarks != null) {
-                ResourceType resourceType = addBookmarkCommand.getResourceType();
-                String resourceId = addBookmarkCommand.getResourceId();
-                HashMap<ResourceType, List<String>> bookmark = bookMarks.getBookmark();
-                if (bookmark.containsKey(resourceType)) {
-                    bookmark.get(resourceId).add(resourceId);
-                } else {
-                    bookmark.put(resourceType, Arrays.asList(resourceId));
-                }
-                bookMarks.setBookmark(bookmark);
+            List<Bookmark> bookMarks = user.getBookmarks();
+            if ( bookMarks != null) {
+                bookMarks.add(addBookmarkCommand.getBookmark());
                 user.setBookmarks(bookMarks);
             }
 
@@ -116,20 +106,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeBookmark(RemoveBookmarkCommand removeBookmarkCommand) {
 
-        log.info(String.format("Entering remove bookmark service - User Id:%s, resource Id:%s, resource type:%s", removeBookmarkCommand.getUserId(), removeBookmarkCommand.getResourceId(),
-                removeBookmarkCommand.getResourceType()));
+        log.info(String.format("Entering remove bookmark service - User Id:%s, resource Id:%s, resource type:%s", removeBookmarkCommand.getUserId(),
+                removeBookmarkCommand.getBookmark().getResourceId(),removeBookmarkCommand.getBookmark().getResourceType()));
 
         User user = userDynamoRepository.findBy(removeBookmarkCommand.getUserId());
         if (user != null) {
-            Bookmarks bookMarks = user.getBookmarks();
+            List<Bookmark> bookMarks = user.getBookmarks();
             if ( bookMarks != null) {
-                ResourceType resourceType = removeBookmarkCommand.getResourceType();
-                String resourceId = removeBookmarkCommand.getResourceId();
-                HashMap<ResourceType, List<String>> bookmark = bookMarks.getBookmark();
-                if (bookmark.containsKey(resourceType)) {
-                    bookmark.get(resourceType).remove(resourceId);
-                }
-                bookMarks.setBookmark(bookmark);
+                bookMarks.removeIf(bookmark -> bookmark.getResourceId().equals(removeBookmarkCommand.getBookmark().getResourceId()) &&
+                        bookmark.getResourceType().equals(removeBookmarkCommand.getBookmark().getResourceType()));
                 user.setBookmarks(bookMarks);
             }
 
