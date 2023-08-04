@@ -2,7 +2,7 @@ package com.tekcapsule.user.domain.command;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tekcapsule.core.domain.Command;
-import com.tekcapsule.user.domain.model.ResourceType;
+import com.tekcapsule.user.domain.model.Bookmark;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,6 +12,5 @@ import lombok.Data;
 @Builder
 public class AddBookmarkCommand extends Command {
     private String userId;
-    private String resourceId;
-    private ResourceType resourceType;
+    private Bookmark bookmark;
 }

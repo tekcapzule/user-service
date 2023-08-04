@@ -39,7 +39,7 @@ public class BookmarkFunction implements Function<Message<AddBookmarkInput>, Mes
         String stage = appConfig.getStage().toUpperCase();
         try {
             AddBookmarkInput addBookmarkInput = addBookmarkInputMessage.getPayload();
-            log.info(String.format("Entering add bookmark Function - User Id:%s, Resource Id:%s", addBookmarkInput.getUserId(), addBookmarkInput.getResourceId()));
+            log.info(String.format("Entering add bookmark Function - User Id:%s, Resource Id:%s", addBookmarkInput.getUserId(), addBookmarkInput.getBookmark().getResourceId()));
             Origin origin = HeaderUtil.buildOriginFromHeaders(addBookmarkInputMessage.getHeaders());
             AddBookmarkCommand addBookmarkCommand = InputOutputMapper.buildBookmarkCommandFromBookmarkInput.apply(addBookmarkInput, origin);
             userService.addBookmark(addBookmarkCommand);
