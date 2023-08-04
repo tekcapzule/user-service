@@ -95,19 +95,6 @@ public class UserServiceImpl implements UserService {
                 bookMarks.add(addBookmarkCommand.getBookmark());
                 user.setBookmarks(bookMarks);
             }
-           /* Bookmark bookMarks = user.getBookmarks();
-            if (bookMarks != null) {
-                ResourceType resourceType = addBookmarkCommand.getResourceType();
-                String resourceId = addBookmarkCommand.getResourceId();
-                HashMap<ResourceType, List<String>> bookmark = bookMarks.getBookmark();
-                if (bookmark.containsKey(resourceType)) {
-                    bookmark.get(resourceId).add(resourceId);
-                } else {
-                    bookmark.put(resourceType, Arrays.asList(resourceId));
-                }
-                bookMarks.setBookmark(bookmark);
-                user.setBookmarks(bookMarks);
-            }*/
 
             user.setUpdatedOn(addBookmarkCommand.getExecOn());
             user.setUpdatedBy(addBookmarkCommand.getExecBy().getUserId());
