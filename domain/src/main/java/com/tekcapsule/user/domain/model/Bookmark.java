@@ -15,8 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @DynamoDBDocument
 public class Bookmark {
-    @DynamoDBTypeConvertedEnum
-    private ResourceType resourceType;
+    private String resourceType;
     private String resourceId;
     private String title;
 
