@@ -26,7 +26,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void create(CreateCommand createCommand) {
 
+        log.info(String.format("Entering create user service - Phone No.:%s", createCommand.getPhoneNumber()));
         log.info(String.format("Entering create user service - User Id:%s", createCommand.getEmailId()));
+
 
         User user = User.builder()
                 .userId(createCommand.getEmailId())
@@ -34,7 +36,6 @@ public class UserServiceImpl implements UserService {
                 .firstName(createCommand.getFirstName())
                 .lastName(createCommand.getLastName())
                 .phoneNumber(createCommand.getPhoneNumber())
-                .subscribedTopics(createCommand.getSubscribedTopics())
                 .activeSince(DateTime.now(DateTimeZone.UTC).toString())
                 .status(Status.ACTIVE)
                 .build();
