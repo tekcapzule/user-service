@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @DynamoDBDocument
 public class Bookmark {
     private String resourceType;
+    private String resourceContentType;
     private String resourceId;
     private String title;
     private String resourceUrl;
