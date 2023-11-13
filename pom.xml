@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tekcapsule</groupId>
+    <groupId>com.tekcapzule</groupId>
     <artifactId>user-application</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
     <packaging>pom</packaging>
     <name>User Application</name>
     <description>User Application</description>
     <properties>
-        <sonar.organization>tekcapsule</sonar.organization>
+        <sonar.organization>tekcapzule</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <modules>
@@ -30,8 +30,8 @@
     <distributionManagement>
         <repository>
             <id>user</id>
-            <name>GitHub TekCapsule Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/tekcapsule/user-service</url>
+            <name>GitHub TekCapzule Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/tekcapzule/user-service</url>
         </repository>
     </distributionManagement>
 </project>
